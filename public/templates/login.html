@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Login to your Shareloc</h2>
+
+    <div class="help-block">
+        <a class="btn btn-primary btn-small" href="register">New user</a>
+    </div>
+
+    <form name="loginForm" ng-submit="login()">
+        <div class="control-group">
+            <label class="control-label" for="email">Email</label>
+            <div class="controls">
+                <input id="email" type="email" ng-model="credentials.email" placeholder="name@domain.com" required/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">Password</label>
+            <div class="controls">
+                <input id="password" type="password" ng-model="credentials.password" required/>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <label class="checkbox"> <input type="checkbox" ng-model="credentials.remember"/>Remember me</label>
+                <a href="remind">Forgot password</a>
+            </div>
+        </div>
+
+        <button type="submit" class="btn" ng-disabled="loginForm.$invalid">Login</button>
+    </form>
+</div>

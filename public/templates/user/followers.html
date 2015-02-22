@@ -1,0 +1,34 @@
+<div class="container">
+    <h2>Permissions to follow me</h2>
+
+    <div class="help-block">
+        <button ng-click="reload()" class="btn btn-success"><i class="icon-refresh icon-white"></i> Reload</button>
+    </div>
+
+    <table class="table" ng-show="followers.length">
+        <tr>
+            <th><input type="checkbox" ng-click="selectAll()"/></th>
+            <th>Nickname</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr ng-repeat="follower in followers">
+            <td> <input type="checkbox" ng-model="follower.selected"/></td>
+            <td><strong>{{follower.full_name}}</strong><br/><small>For device: {{follower.phone_no}}</small></td>
+            <td>
+                <div ng-click1="toggleActive(follower)" class="pull-right">
+                    <label class="checkbox inline"><input type="checkbox" ng-model="follower.is_active" ng-change="updateActive(follower)"/> <span ng-class="getApprovedClass(follower.is_active)">Approve</span></label>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div ng-show="followers.length">
+        <p>You can enable/disable the permission to follow you. You can also delete permissions.</p>
+        <button class="btn btn-small" ng-click="deleteSelected()" ng-show="hasSelectedDevice()">Delete</button>
+    </div>
+
+    <div class="clearfix pull-right">
+        <a class="btn btn-primary" href="following-devices">finish &amp; back to devices</a>
+    </div>
+
+</div>

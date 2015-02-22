@@ -1,0 +1,70 @@
+<div class="container">
+    <h2>Quick Registration</h2>
+
+    <form name="registerForm" ng-submit="register(newUser)">
+        <div class="help-block">
+            <a class="btn btn-primary btn-small" href="login">Already have a user</a>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="phone_no">Phone number: </label>
+            <div class="controls">
+                <input id="phone_no" name="phone_no" type="tel" ng-model="newUser.device.phone_no" required ng-minlength="10"/>
+                <div class="error" ng-show="registerForm.phone_no.$dirty && registerForm.full_name.$invalid">
+                    <span ng-show="registerForm.phone_no.$error.required">Tell us your phone.</span>
+                    <span ng-show="registerForm.phone_no.$error.minlength">Minimum 10 characters.</span>
+                    <span ng-show="registerForm.phone_no.$error.unique">Phone already exist.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="full_name">Full Name</label>
+            <div class="controls">
+                <input id="full_name" name="full_name" type="text" ng-model="newUser.full_name" placeholder="Jhone Cohen" required ng-minlength="3"/>
+                <div class="error" ng-show="registerForm.full_name.$dirty && registerForm.full_name.$invalid">
+                    <span ng-show="registerForm.full_name.$error.required">Tell us your name.</span>
+                    <span ng-show="registerForm.full_name.$error.minlength">Minimum 3 characters.</span>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="email">Email</label>
+            <div class="controls">
+                <input id="email" name="email" type="email" ng-model="newUser.email" placeholder="Email" required unique/>
+
+                <div class="error" ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
+                    <span ng-show="registerForm.email.$error.required">Tell us your email.</span>
+                    <span ng-show="registerForm.email.$error.email">This is not a valid email.</span>
+                    <span ng-show="registerForm.email.$error.unique">Email already exist.</span>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">Password</label>
+            <div class="controls">
+                <input id="password" name="password" type="password" ng-model="newUser.password" placeholder="Password" required ng-minlength="7"/>
+                <!--<input name="confirmPassword" type="password" ng-model="newUser.confirm_password" placeholder="Confirm Password" confirm="password" required/>-->
+                <div class="error" ng-show="registerForm.password.$dirty && registerForm.password.$invalid">
+                    <span ng-show="registerForm.password.$error.required">Password required.</span>
+                    <span ng-show="registerForm.password.$error.minlength">Minimum 7 characters.</span>
+                </div>
+                <!--<div class="error" ng-show="registerForm.password.$valid && registerForm.confirmPassword.$dirty && registerForm.confirmPassword.$invalid">-->
+                    <!--<span ng-show="registerForm.confirmPassword.$error.confirm">Passwords not equal</span>-->
+                <!--</div>-->
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <label class="checkbox"> <input type="checkbox" ng-model="newUser.remember"/>Remember me</label>
+                <label class="checkbox"> <input name="agree" type="checkbox" ng-model="newUser.agree" required/> I agree to the terms below <br/><a href="terms">Terms &amp; Conditions</a></label>
+                <div class="error" ng-show="registerForm.agree.$dirty && registerForm.agree.$invalid">
+                    <span ng-show="registerForm.agree.$error.required">You must agree to the terms.</span>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn" ng-disabled="registerForm.$invalid">Sign in</button>
+    </form>
+</div>

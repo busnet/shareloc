@@ -1,0 +1,69 @@
+<div class="container">
+    <h2>Following Device</h2>
+    <p><strong>Nickname: </strong>{{device.nickname}}</p>
+    <p>Phone number: {{device.phone_no}}</p>
+
+
+
+    <ul class="report-list">
+        <li ng-repeat="report in device.reports">
+            <p><strong>Last report: </strong> {{report.created_at | date:'medium'}}</p>
+        </li>
+    </ul>
+
+    <hr/>
+
+    <div ng-if="nearbyAlerts.length">
+        <ul id="nearby-alerts-list">
+            <li><h4>Nearby Alerts</h4></li>
+            <li ng-repeat="nearbyAlert in nearbyAlerts">
+                <p>
+                    <strong>{{nearbyAlert.distance}} meters from {{nearbyAlert.name}}</strong>
+                    <a ng-click="removeNearbyAlert(nearbyAlert)">Remove alert</a>
+                    <br/>
+                    <span ng-if="!nearbyAlert.left_at">Last arrive: {{nearbyAlert.visited_at || '[n/a]'}}</span>
+                    <span ng-if="nearbyAlert.left_at">Left in: {{nearbyAlert.left_at}}</span>
+                </p>
+            </li>
+        </ul>
+
+        <hr/>
+    </div>
+
+    <div ng-if="places.length">
+        <form name="nearbyAlertForm" ng-submit="addNearbyAlert()">
+            <input type="hidden" ng-model="nearbyAlert.device_id"/>
+
+            <div class="control-group">
+                <label class="control-label" for="place_id">Place: </label>
+                <div class="controls">
+                    <select id="place_id" name="place_id" ng-model="nearbyAlert.place_id" ng-options="place.id as place.name for place in places"></select>
+                    <div class="error" ng-show="nearbyAlertForm.place_id.$dirty && nearbyAlertForm.place_id.$invalid">
+                        <span ng-show="nearbyAlertForm.place_id.$error.required">Select Place</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="distance">Distance(Meters): </label>
+                <div class="controls">
+                    <input id="distance" type="number" name="distance" ng-model="nearbyAlert.distance" required min="10"/>
+                    <div class="error" ng-show="nearbyAlertForm.distance.$dirty && nearbyAlertForm.distance.$invalid">
+                        <span ng-show="nearbyAlertForm.distance.$error.required">Enter distance</span>
+                        <span ng-show="nearbyAlertForm.distance.$error.min">Min 10 meters</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <button class="btn btn-primary btn-save" type="submit" ng-disabled="nearbyAlertForm.$invalid">Ok</button>
+            <!--<button class="btn btn-cancel">Cancel</button>-->
+        </form>
+
+        <hr/>
+    </div>
+
+    <button class="btn pull-left" ng-click="delete(device.id)">Delete device</button>
+
+    <a href="following-devices" class="btn btn-primary pull-right">Close</a>
+</div>

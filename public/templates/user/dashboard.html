@@ -1,0 +1,20 @@
+<div class="container">
+	<h2>Dashboard</h2>
+	<h4>Hi, {{loggedInUser.full_name}}</h4>
+
+
+    <div ng-hide="followingDevices.length">
+        <hr/>
+        <a class="btn btn-primary" href="add-following-device">Add You'r first Device</a>
+    </div>
+
+    <hr/>
+
+    <a class="btn" href="following-devices" ng-show="followingDevices.length">Devices I follow <span class="badge">{{followingDevices.length}}</span></a>
+    <a class="btn" href="followers" ng-show="followers.length">Users follow me <span class="badge">{{followers.length}}</span></a>
+
+    <hr/>
+
+    <button ng-click="reload()" class="btn btn-success"><i class="icon-refresh icon-white"></i> Reload</button>
+
+</div>

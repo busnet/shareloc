@@ -1,0 +1,37 @@
+<div class="container">
+    <h2>Add Following Device</h2>
+
+    <form  name="addFollowingDeviceForm" ng-submit="add()" novalidate1 style="width:220px;">
+        <div class="control-group">
+            <label class="control-label" for="phone_no">Phone Number:</label>
+            <div class="controls">
+                <input id="phone_no" type="tel" name="phone_no" ng-model="device.phone_no" required exists/>
+                <div class="error" ng-show="addFollowingDeviceForm.phone_no.$dirty && addFollowingDeviceForm.phone_no.$invalid">
+                    <span ng-show="addFollowingDeviceForm.phone_no.$error.required">Enter device phone number.</span>
+                    <span ng-show="addFollowingDeviceForm.phone_no.$error.exists">Device not exists.</span>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="nickname">Nickname:</label>
+            <div class="controls">
+                <input id="nickname" type="text" name="nickname" ng-model="device.nickname" required/>
+                <div class="error" ng-show="addFollowingDeviceForm.nickname.$dirty && addFollowingDeviceForm.nickname.$invalid">
+                    <span ng-show="addFollowingDeviceForm.nickname.$error.required">Enter nickname.</span>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="control-group">
+            <label class="control-label" for="code">Code:</label>
+            <div class="controls">
+                <input id="code" type="text" name="code" ng-model="device.code"/>
+            </div>
+        </div>-->
+
+        <div class="clearfix">
+            <a href="following-devices-list" class="btn pull-left">Cancel</a>
+            <button type="submit" class="btn btn-primary pull-right" ng-disabled="addFollowingDeviceForm.$invalid">Add</button>
+        </div>
+    </form>
+</div>

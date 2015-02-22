@@ -1,0 +1,35 @@
+<style>
+    #map-canvas{width:100%; height:400px; border:1px solid #000; margin-bottom:15px;}
+    #map-canvas img{max-width: none;}
+</style>
+<div class="container">
+    <div class="help-block clearfix">
+        <div class="btn-group" ng-show="followingDevices.length">
+            <a class="btn btn-small active" href="following-devices-list">List</a>
+            <a class="btn btn-small" href="following-devices-map">Map</a>
+        </div>
+
+        <button ng-click="reload()" class="btn btn-small btn-success pull-right"><i class="icon-refresh icon-white"></i> Reload</button>
+        <a class="btn btn-small btn-primary pull-right  mr5" href="add-following-device">Add Device</a>
+    </div>
+
+    <table class="devices-table">
+        <tr ng-repeat="followingDevice in followingDevices | orderBy:'nickname'">
+            <td style="width:50px;"><img ng-src="{{getMapImg(followingDevice)}}"/></td>
+            <td>
+                <h4><a ng-href="following-device/{{followingDevice.id}}">{{followingDevice.nickname}}</a></h4>
+                <p ng-show="{{followingDevice.created_at}}"><strong>Last Report:</strong> {{followingDevice.created_at | date:'medium'}}</p>
+            </td>
+        </tr>
+    </table>
+
+    <hr/>
+
+    <ul id="places-list">
+        <li><h4>Places</h4></li>
+        <li ng-repeat="place in places">
+
+            {{ place.name }} <a ng-click="removePlace(place)">Remove</a>
+        </li>
+    </ul>
+</div>

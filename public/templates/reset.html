@@ -1,0 +1,27 @@
+<div class="container">
+    <h2>Reset password</h2>
+
+    <p ng-show="successMsg">{{ successMsg }}</p>
+
+    <form name="resetForm" ng-submit="reset()" ng-hide="successMsg">
+        <input type="hidden" ng-model="data.token"/>
+
+        <div class="control-group">
+            <label class="control-label" for="password">Password</label>
+            <div class="controls">
+                <input id="password" name="password" type="password" ng-model="data.password" placeholder="Password" required ng-minlength="7"/><br/>
+                <input name="confirmPassword" type="password" ng-model="data.password_confirmation" placeholder="Confirm Password" confirm="password" required/>
+
+                <div class="error" ng-show="resetForm.password.$dirty && resetForm.password.$invalid">
+                    <span ng-show="resetForm.password.$error.required">Password required.</span>
+                    <span ng-show="resetForm.password.$error.minlength">Minimum 7 characters.</span>
+                </div>
+                <div class="error" ng-show="resetForm.password.$valid && resetForm.confirmPassword.$dirty && resetForm.confirmPassword.$invalid">
+                    <span ng-show="resetForm.confirmPassword.$error.confirm">Passwords not equal</span>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn" ng-disabled="resetForm.$invalid">Reset</button>
+    </form>
+</div>

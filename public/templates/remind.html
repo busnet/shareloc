@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>Forgot password</h2>
+
+    <p ng-show="successMsg">{{ successMsg }}</p>
+
+    <form name="reminderForm" ng-submit="reminder()" ng-hide="successMsg">
+        <div class="control-group">
+            <label class="control-label" for="email">Email</label>
+            <div class="controls">
+                <input id="email" name="email" type="email" ng-model="data.email" placeholder="Email" required/>
+
+                <div class="error" ng-show="reminderForm.email.$dirty && reminderForm.email.$invalid">
+                    <span ng-show="reminderForm.email.$error.required">Tell us your email.</span>
+                    <span ng-show="reminderForm.email.$error.email">This is not a valid email.</span>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn" ng-disabled="reminderForm.$invalid">Send Reminder</button>
+    </form>
+</div>
